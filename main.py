@@ -1,16 +1,21 @@
-# This is a sample Python script.
+from pathlib import Path
+import src.extraction as ext
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+# Defining Bronze Path
+bronze_path = Path("data/1_Bronze")
+
+# Ensuring Path exists
+bronze_path.mkdir(exist_ok=True, parents=True)
+
+# ------------------ Extraction using commit a499dd34c1372468f2335a370c5dd13cc3a72d90
+
+url = "https://raw.githubusercontent.com/owid/co2-data/a499dd34c1372468f2335a370c5dd13cc3a72d90/owid-co2-data.csv"
+
+if not any(bronze_path.iterdir()):
+    print("Starting extraction ...")
+    ext.extract(url)
+else:
+    print("Data already available. Skipping extraction ...")
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
 
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
