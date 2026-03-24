@@ -2,9 +2,12 @@
 import pandas as pd
 
 
-def extract(url: str):
+def extract(url: str, url_meta: str):
     raw_df = pd.read_csv(url)
-    raw_df.to_csv("data/1_Bronze/owid_co2_raw_data.csv", index=False)
+    raw_df.to_csv("data/raw/owid_co2_raw_data.csv", index=False)
+
+    raw_meta = pd.read_csv(url_meta)
+    raw_meta.to_csv("data/raw/owid_co2_codebook.csv", index=False)
 
 
 
