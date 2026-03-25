@@ -1,12 +1,16 @@
 from Constants import pandas_options, fact_const_columns
 from dotenv import load_dotenv
+from pathlib import Path
 from sqlalchemy import create_engine, Engine, text
 import os
 import pandas as pd
 import re
 import urllib.parse
 
-load_dotenv()
+env_path = Path(__file__).resolve().parent.parent / '.env'
+print(env_path)
+load_dotenv(dotenv_path=env_path)
+
 
 def load_silver(path: str) -> pd.DataFrame:
     # Accessing transformed (silver) data
@@ -73,7 +77,7 @@ def push_to_db(df: pd.DataFrame, table_name: str, engine: Engine, schema: str) -
         print(f"Error: {e}")
 
 
-def run_query(sql_query: str, params=None) -> pd.DataFrame:
+def run_query(sql_query: str, engine: Engine, params=None) -> pd.DataFrame:
     with engine.connect() as conn:
         return pd.read_sql(sql_query, conn, params=params)
 
@@ -92,6 +96,14 @@ if __name__ == '__main__':
     host = os.getenv("HOST")
     port = os.getenv("PORT")
     db_name = os.getenv("DB_NAME")
+
+    # 3. Debugging (Crucial step!)
+    if not all([user, password, db_name]):
+        print(f"ERROR: Missing environment variables! Checked path: {env_path}")
+        # This will tell you exactly what Python sees (or doesn't see)
+    else:
+        print(f"Environment variables loaded for user: {user}")
+
     # Encode the password to handle special characters (@, !, #, etc...)
     encoded_password = urllib.parse.quote_plus(password)
     engine = create_engine(f"postgresql://{user}:{encoded_password}@{host}:{port}/{db_name}")
@@ -108,3 +120,6 @@ if __name__ == '__main__':
     push_to_db(non_co2_ghg_agg, "agg_non_co2_ghg", engine, schema="co2_project")
     push_to_db(climate_impact_agg, "agg_climate_impact", engine, schema="co2_project")
     """
+    query1 = "select * from co2_project.fact_emissions;"
+    df = run_query(query1, engine)
+    print(df)
