@@ -1,3 +1,6 @@
 pandas
 plotly
 psycopg2
+fastparquet
+sqlalchemy
+dotenv
