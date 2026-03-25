@@ -55,6 +55,16 @@ def logical_split(df: pd.DataFrame) -> [pd.DataFrame]:
     return df_emissions_main, df_co2_consumption_main, df_emission_sources, df_non_ghg, df_climate_impact
 
 
+def gold_filtering(sliced_df: pd.DataFrame) -> pd.DataFrame:
+    # Using as base the backbone of the columns
+    backbone = ["country", "year", "iso_code", "population_people"]
+    actual_backbone = [col for col in backbone if col in sliced_df.columns]
+    remaining_columns = sliced_df.columns.difference(actual_backbone)
+    # Remove lines where everything is Nan except for the backbone.
+    filtered_df = sliced_df.dropna(subset=remaining_columns, how='all')
+    return filtered_df
+
+
 def push_to_db(df: pd.DataFrame, table_name: str, engine: Engine, schema: str) -> None:
 
     # 1. Empty the table but keep the structure and types
