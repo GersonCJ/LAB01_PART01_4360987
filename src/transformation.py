@@ -1,10 +1,5 @@
 import pandas as pd
-
-# ----------------- Pandas configs - Temp
-# Show every single column
-pd.set_option('display.width', None)
-pd.set_option('display.max_colwidth', None)
-pd.set_option('display.max_rows', 80)
+import Constants.pandas_options
 
 
 def load_bronze(path: str) -> pd.DataFrame:
@@ -15,7 +10,7 @@ def load_bronze(path: str) -> pd.DataFrame:
 def data_cleanse(df: pd.DataFrame) -> pd.DataFrame:
     # Drop duplicates
     removed_dups = df.drop_duplicates()
-    # Drop Data where everything is nan except population, year and country
+    # Drop Data population, year and country are NaN
     backbone = ["country", "year", "population"]
     cleansed_df = removed_dups.dropna(subset=backbone, how="any")
     return cleansed_df
@@ -67,7 +62,7 @@ def standardizing_data(raw_df: pd.DataFrame, units_df: pd.DataFrame) -> pd.DataF
     return df_formated.rename(columns=rename_map)
 
 
-def impute_special_isos(df: pd.DataFrame) -> pd.DataFrame:
+def input_special_isos(df: pd.DataFrame) -> pd.DataFrame:
     # In the dataset there is some elements that do not have iso_codes.
     # Most of them are Aggregate values that already are in the dataset reunited by several organizations
     # But there are two special cases:
@@ -103,15 +98,16 @@ if __name__ == "__main__":
 
     raw_data = load_bronze("../data/raw/owid_co2_raw_data.csv")
     metadata = load_bronze("../data/raw/owid_co2_codebook.csv")
-    print(f"raw_size:{raw_data.size}")
+    print(f"raw_size:{raw_data.shape[0]}")
     print(raw_data[raw_data["iso_code"].isna()]["country"].unique())
     cleansed_data = data_cleanse(raw_data)
     units_data = obtaining_units_from_meta(metadata)
     df_formated = standardizing_data(cleansed_data, units_data)
-    ready_to_silver = impute_special_isos(df_formated)
-    print(f"df_formated_size:{ready_to_silver.size}\n")
+    ready_to_silver = input_special_isos(df_formated)
+    print(f"df_formated_size:{ready_to_silver.shape[0]}\n")
     print(f"df_formated:\n{ready_to_silver.head(10)}\n")
 
     print(df_formated.info())
     print(df_formated[df_formated["iso_code"].isna()]["country"].unique())
 
+    print(ready_to_silver.tail(10))
