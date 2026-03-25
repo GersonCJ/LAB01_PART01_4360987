@@ -1,0 +1,27 @@
+CREATE TABLE Co2_project.fact_emissions(
+	country VARCHAR(255),
+	year INT,
+	iso_code VARCHAR(30),
+	population_people BIGINT,
+    gdp_usd FLOAT8,
+    co2_mt FLOAT8,
+	co2_growth_abs_mt FLOAT8,
+	co2_growth_prct_prct FLOAT8,
+	co2_including_luc_mt FLOAT8,
+	co2_including_luc_growth_abs_mt FLOAT8,
+	co2_including_luc_growth_prct_prct FLOAT8,
+	co2_including_luc_per_capita_t_per_person FLOAT8,
+	co2_including_luc_per_gdp_kg_per_usd FLOAT8,
+	co2_including_luc_per_unit_energy_kg_per_kwh FLOAT8,
+	cumulative_co2_mt FLOAT8,
+	cumulative_co2_including_luc_mt FLOAT8,
+	co2_per_capita_t_per_person FLOAT8,
+	co2_per_gdp_kg_per_usd FLOAT8,
+	co2_per_unit_energy_kg_per_kwh FLOAT8,
+	share_global_co2_prct FLOAT8,
+	share_global_co2_including_luc_prct FLOAT8,
+	share_global_cumulative_co2_prct FLOAT8,
+	share_global_cumulative_co2_including_luc_prct FLOAT8,
+	PRIMARY KEY (year, iso_code)
+	
+)
