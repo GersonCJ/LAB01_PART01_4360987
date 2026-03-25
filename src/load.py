@@ -73,6 +73,11 @@ def push_to_db(df: pd.DataFrame, table_name: str, engine: Engine, schema: str) -
         print(f"Error: {e}")
 
 
+def run_query(sql_query: str, params=None) -> pd.DataFrame:
+    with engine.connect() as conn:
+        return pd.read_sql(sql_query, conn, params=params)
+
+
 if __name__ == '__main__':
     national_silver = load_silver("../data/silver/National_table_parquet.parquet")
     # print(national_silver)
@@ -83,8 +88,7 @@ if __name__ == '__main__':
     emissions_agg, consumptions_agg, emission_sources_agg, non_co2_ghg_agg, climate_impact_agg = logical_split(agg_silver)
 
     user = os.getenv("USER")
-    # password = os.getenv("PASSWORD")
-    password = "Swanpert@96"
+    password = os.getenv("PASSWORD")
     host = os.getenv("HOST")
     port = os.getenv("PORT")
     db_name = os.getenv("DB_NAME")

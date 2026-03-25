@@ -59,3 +59,5 @@ else:
 print(f"Characterization - Basic infos (Columns, Non-nulls, Dtype of columns):\n{national_df.info()}")
 print(f"Characterization - Data Descriptions:\n{national_df.describe()}")
 print(f"Characterization - Nulls Count:\n{national_df.isna().sum()}")
+
+# 7.
