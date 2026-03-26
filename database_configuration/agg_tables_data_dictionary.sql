@@ -1,0 +1,106 @@
+-- Emission Group
+COMMENT ON COLUMN co2_project.agg_emissions.country IS 'Country';
+COMMENT ON COLUMN co2_project.agg_emissions.year IS 'Year';
+COMMENT ON COLUMN co2_project.agg_emissions.iso_code IS 'ISO code';
+COMMENT ON COLUMN co2_project.agg_emissions.population_people IS 'Population';
+COMMENT ON COLUMN co2_project.agg_emissions.gdp_usd IS 'Gross domestic product (GDP)';
+COMMENT ON COLUMN co2_project.agg_emissions.co2_mt IS 'Annual CO₂ emissions (measured in million tonnes)';
+COMMENT ON COLUMN co2_project.agg_emissions.co2_growth_abs_mt IS 'Annual CO₂ emissions growth (abs) (measured in million tonnes)';
+COMMENT ON COLUMN co2_project.agg_emissions.co2_growth_prct_prct IS 'Annual CO₂ emissions growth (prct)';
+COMMENT ON COLUMN co2_project.agg_emissions.co2_including_luc_mt IS 'Annual CO₂ emissions including land-use change (measured in million tonnes)';
+COMMENT ON COLUMN co2_project.agg_emissions.co2_including_luc_growth_abs_mt IS 'Growth rate of emissions including land-use change (measured in million tonnes)';
+COMMENT ON COLUMN co2_project.agg_emissions.co2_including_luc_growth_prct_prct IS 'Growth rate of emissions including land-use change (prct)';
+COMMENT ON COLUMN co2_project.agg_emissions.co2_including_luc_per_capita_t_per_person IS 'Annual CO₂ emissions including land-use change per capita';
+COMMENT ON COLUMN co2_project.agg_emissions.co2_including_luc_per_gdp_kg_per_usd IS 'Annual CO₂ emissions including land-use change per GDP';
+COMMENT ON COLUMN co2_project.agg_emissions.co2_including_luc_per_unit_energy_kg_per_kwh IS 'Annual CO₂ emissions including land-use change per unit energy';
+COMMENT ON COLUMN co2_project.agg_emissions.cumulative_co2_mt IS 'Cumulative CO₂ emissions (measured in million tonnes)';
+COMMENT ON COLUMN co2_project.agg_emissions.cumulative_co2_including_luc_mt IS 'Cumulative CO₂ emissions including land-use change (measured in million tonnes)';
+COMMENT ON COLUMN co2_project.agg_emissions.co2_per_capita_t_per_person IS 'CO₂ emissions per capita';
+COMMENT ON COLUMN co2_project.agg_emissions.co2_per_gdp_kg_per_usd IS 'Annual CO₂ emissions per GDP ';
+COMMENT ON COLUMN co2_project.agg_emissions.co2_per_unit_energy_kg_per_kwh IS 'Annual CO₂ emissions per unit energy';
+COMMENT ON COLUMN co2_project.agg_emissions.share_global_co2_prct IS 'Share of global annual CO₂ emissions (prct)';
+COMMENT ON COLUMN co2_project.agg_emissions.share_global_co2_including_luc_prct IS 'Share of global annual CO₂ emissions including land-use change (prct)';
+COMMENT ON COLUMN co2_project.agg_emissions.share_global_cumulative_co2_prct IS 'Share of global cumulative CO₂ emissions (prct)';
+COMMENT ON COLUMN co2_project.agg_emissions.share_global_cumulative_co2_including_luc_prct IS 'Share of global cumulative CO₂ emissions including land-use change (prct)';
+
+-- Consumption Group
+COMMENT ON COLUMN co2_project.agg_consumption.country IS 'Country';
+COMMENT ON COLUMN co2_project.agg_consumption.year IS 'Year';
+COMMENT ON COLUMN co2_project.agg_consumption.iso_code IS 'ISO code';
+COMMENT ON COLUMN co2_project.agg_consumption.population_people IS 'Population';
+COMMENT ON COLUMN co2_project.agg_consumption.gdp_usd IS 'Gross domestic product (GDP)';
+COMMENT ON COLUMN co2_project.agg_consumption.consumption_co2_mt IS 'Annual consumption-based CO₂ emissions (measured in million tonnes)';
+COMMENT ON COLUMN co2_project.agg_consumption.consumption_co2_per_capita_t_per_person IS 'Per capita consumption-based CO₂ emissions';
+COMMENT ON COLUMN co2_project.agg_consumption.consumption_co2_per_gdp_kg_per_usd IS 'Annual consumption-based CO₂ emissions per GDP (measured in kilograms per dollar of GDP)';
+COMMENT ON COLUMN co2_project.agg_consumption.energy_per_capita_kwh IS 'Primary energy consumption per capita (Measured in kilowatt-hours per person)';
+COMMENT ON COLUMN co2_project.agg_consumption.energy_per_gdp_kwh IS 'Primary energy consumption per GDP (Measured in kilowatt-hours per USD)';
+COMMENT ON COLUMN co2_project.agg_consumption.primary_energy_consumption_twh IS '	Primary energy consumption (Measured in terawatt-hours)';
+
+-- Emission Sources Group
+COMMENT ON COLUMN co2_project.agg_emission_sources.country IS 'Country';
+COMMENT ON COLUMN co2_project.agg_emission_sources.year IS 'Year';
+COMMENT ON COLUMN co2_project.agg_emission_sources.iso_code IS 'ISO code';
+COMMENT ON COLUMN co2_project.agg_emission_sources.population_people IS 'Population';
+COMMENT ON COLUMN co2_project.agg_emission_sources.gdp_usd IS 'Gross domestic product (GDP)';
+COMMENT ON COLUMN co2_project.agg_emission_sources.cement_co2_mt IS 'Annual CO₂ emissions from cement (measured in million tonnes)';
+COMMENT ON COLUMN co2_project.agg_emission_sources.cement_co2_per_capita_t_per_person IS '	Annual CO₂ emissions from cement (per capita)';
+COMMENT ON COLUMN co2_project.agg_emission_sources.coal_co2_mt IS 'Annual CO₂ emissions from coal (measured in million tonnes)';
+COMMENT ON COLUMN co2_project.agg_emission_sources.coal_co2_per_capita_t_per_person IS 'Annual CO₂ emissions from coal (per capita)';
+COMMENT ON COLUMN co2_project.agg_emission_sources.cumulative_cement_co2_mt IS 'Cumulative CO₂ emissions from cement (measured in million tonnes)';
+COMMENT ON COLUMN co2_project.agg_emission_sources.cumulative_coal_co2_mt IS 'Cumulative CO₂ emissions from coal (measured in million tonnes)';
+COMMENT ON COLUMN co2_project.agg_emission_sources.cumulative_flaring_co2_mt IS 'Cumulative CO₂ emissions from flaring (measured in million tonnes)';
+COMMENT ON COLUMN co2_project.agg_emission_sources.cumulative_gas_co2_mt IS 'Cumulative CO₂ emissions from gas (measured in million tonnes)';
+COMMENT ON COLUMN co2_project.agg_emission_sources.cumulative_luc_co2_mt IS 'Cumulative CO₂ emissions from land-use change (measured in million tonnes)';
+COMMENT ON COLUMN co2_project.agg_emission_sources.cumulative_oil_co2_mt IS 'Cumulative CO₂ emissions from oil (measured in million tonnes)';
+COMMENT ON COLUMN co2_project.agg_emission_sources.cumulative_other_co2_mt IS 'Cumulative CO₂ emissions from other industry (measured in million tonnes)';
+COMMENT ON COLUMN co2_project.agg_emission_sources.flaring_co2_mt IS 'Annual CO₂ emissions from flaring (measured in million tonnes)';
+COMMENT ON COLUMN co2_project.agg_emission_sources.flaring_co2_per_capita_t_per_person IS 'Annual CO₂ emissions from flaring (per capita) (measured in tonnes per person)';
+COMMENT ON COLUMN co2_project.agg_emission_sources.gas_co2_mt IS 'Annual CO₂ emissions from gas (measured in million tonnes)';
+COMMENT ON COLUMN co2_project.agg_emission_sources.gas_co2_per_capita_t_per_person IS 'Annual CO₂ emissions from gas (per capita) (measured in tonnes per person)';
+COMMENT ON COLUMN co2_project.agg_emission_sources.land_use_change_co2_mt IS 'Annual CO₂ emissions from land-use change (measured in million tonnes)';
+COMMENT ON COLUMN co2_project.agg_emission_sources.land_use_change_co2_per_capita_t_per_person IS 'Annual CO₂ emissions from land-use change per capita (measured in tonnes per person)';
+COMMENT ON COLUMN co2_project.agg_emission_sources.oil_co2_mt IS 'Annual CO₂ emissions from oil (measured in million tonnes)';
+COMMENT ON COLUMN co2_project.agg_emission_sources.oil_co2_per_capita_t_per_person IS 'Annual CO₂ emissions from oil (per capita) (measured in tonnes per person)';
+COMMENT ON COLUMN co2_project.agg_emission_sources.other_co2_per_capita_t_per_person IS 'Annual CO₂ emissions from other industry (per capita) (measured in tonnes per person)';
+COMMENT ON COLUMN co2_project.agg_emission_sources.other_industry_co2_mt IS 'Annual CO₂ emissions from other industry (measured in million tonnes)';
+COMMENT ON COLUMN co2_project.agg_emission_sources.share_global_cement_co2_prct IS 'Share of global annual CO₂ emissions from cement (prct)';
+COMMENT ON COLUMN co2_project.agg_emission_sources.share_global_coal_co2_prct IS 'Share of global annual CO₂ emissions (prct)';
+COMMENT ON COLUMN co2_project.agg_emission_sources.share_global_cumulative_cement_co2_prct IS 'Share of global cumulative CO₂ emissions from cement (prct)';
+COMMENT ON COLUMN co2_project.agg_emission_sources.share_global_cumulative_coal_co2_prct IS 'Share of global cumulative CO₂ emissions from coal (prct)';
+COMMENT ON COLUMN co2_project.agg_emission_sources.share_global_cumulative_flaring_co2_prct IS 'Share of global cumulative CO₂ emissions from flaring (prct)';
+COMMENT ON COLUMN co2_project.agg_emission_sources.share_global_cumulative_gas_co2_prct IS 'Share of global cumulative CO₂ emissions from gas (prct)';
+COMMENT ON COLUMN co2_project.agg_emission_sources.share_global_cumulative_luc_co2_prct IS 'Share of global cumulative CO₂ emissions from land-use change (prct)';
+COMMENT ON COLUMN co2_project.agg_emission_sources.share_global_cumulative_oil_co2_prct IS 'Share of global cumulative CO₂ emissions from oil (prct)';
+COMMENT ON COLUMN co2_project.agg_emission_sources.share_global_cumulative_other_co2_prct IS '	Share of global cumulative CO₂ emissions from other industry (prct)';
+COMMENT ON COLUMN co2_project.agg_emission_sources.share_global_flaring_co2_prct IS 'Share of global annual CO₂ emissions from flaring (prct)';
+COMMENT ON COLUMN co2_project.agg_emission_sources.share_global_gas_co2_prct IS 'Share of global annual CO₂ emissions from gas (prct)';
+COMMENT ON COLUMN co2_project.agg_emission_sources.share_global_luc_co2_prct IS 'Share of global annual CO₂ emissions from land-use change (prct)';
+COMMENT ON COLUMN co2_project.agg_emission_sources.share_global_oil_co2_prct IS 'Share of global annual CO₂ emissions from oil (prct)';
+COMMENT ON COLUMN co2_project.agg_emission_sources.share_global_other_co2_prct IS 'Share of global annual CO₂ emissions from other industry (prct)';
+COMMENT ON COLUMN co2_project.agg_emission_sources.trade_co2_mt IS 'Annual CO₂ emissions embedded in trade (measured in million tonnes)';
+COMMENT ON COLUMN co2_project.agg_emission_sources.trade_co2_share_prct IS 'Share of annual CO₂ emissions embedded in trade (prct)';
+
+-- GHG Group
+COMMENT ON COLUMN co2_project.agg_non_co2_ghg.country IS 'Country';
+COMMENT ON COLUMN co2_project.agg_non_co2_ghg.year IS 'Year';
+COMMENT ON COLUMN co2_project.agg_non_co2_ghg.iso_code IS 'ISO code';
+COMMENT ON COLUMN co2_project.agg_non_co2_ghg.population_people IS 'Population';
+COMMENT ON COLUMN co2_project.agg_non_co2_ghg.gdp_usd IS 'Gross domestic product (GDP)';
+COMMENT ON COLUMN co2_project.agg_non_co2_ghg.ghg_excluding_lucf_per_capita_t_per_person IS 'Per capita greenhouse gas emissions from fossil fuels and industry (measured in tonnes per person of carbon dioxide-equivalents over a 100-year timescale))';
+COMMENT ON COLUMN co2_project.agg_non_co2_ghg.ghg_per_capita_t_per_person IS '	Per capita greenhouse gas emissions including land use (measured in tonnes per person of carbon dioxide-equivalents over a 100-year timescale)';
+COMMENT ON COLUMN co2_project.agg_non_co2_ghg.methane_mt IS 'Annual methane emissions including land use (measured in tonnes of carbon dioxide-equivalents over a 100-year timescale)';
+COMMENT ON COLUMN co2_project.agg_non_co2_ghg.methane_per_capita_t_per_person IS 'Per capita methane emissions including land use (measured in tonnes of carbon dioxide-equivalents over a 100-year timescale)';
+COMMENT ON COLUMN co2_project.agg_non_co2_ghg.nitrous_oxide_mt IS 'Annual nitrous oxide emissions including land use (measured in tonnes of carbon dioxide-equivalents over a 100-year timescale)';
+COMMENT ON COLUMN co2_project.agg_non_co2_ghg.nitrous_oxide_per_capita_t_per_person IS 'Per capita nitrous oxide emissions including land use (measured in tonnes of carbon dioxide-equivalents over a 100-year timescale)';
+COMMENT ON COLUMN co2_project.agg_non_co2_ghg.total_ghg_mt IS 'Annual greenhouse gas emissions including land use (measured in tonnes of carbon dioxide-equivalents over a 100-year timescale)';
+COMMENT ON COLUMN co2_project.agg_non_co2_ghg.total_ghg_excluding_lucf_mt IS '	Annual greenhouse gas emissions from fossil fuels and industry (measured in tonnes of carbon dioxide-equivalents over a 100-year timescale)';
+
+-- Climate Impact Group
+COMMENT ON COLUMN co2_project.agg_climate_impact.country IS 'Country';
+COMMENT ON COLUMN co2_project.agg_climate_impact.year IS 'Year';
+COMMENT ON COLUMN co2_project.agg_climate_impact.iso_code IS 'ISO code';
+COMMENT ON COLUMN co2_project.agg_climate_impact.share_of_temperature_change_from_ghg_prct IS 'Share of contribution to global warming (prct)';
+COMMENT ON COLUMN co2_project.agg_climate_impact.temperature_change_from_ch4_degrees_c IS 'Change in global mean surface temperature caused by methane emissions (degrees C)';
+COMMENT ON COLUMN co2_project.agg_climate_impact.temperature_change_from_co2_degrees_c IS 'Change in global mean surface temperature caused by CO₂ emissions (degrees C)';
+COMMENT ON COLUMN co2_project.agg_climate_impact.temperature_change_from_ghg_degrees_c IS 'Change in global mean surface temperature caused by greenhouse gas emissions (degrees C)';
+COMMENT ON COLUMN co2_project.agg_climate_impact.temperature_change_from_n2o_degrees_c IS 'Change in global mean surface temperature caused by nitrous oxide emissions (degrees C)';
