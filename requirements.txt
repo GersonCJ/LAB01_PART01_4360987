@@ -6,3 +6,4 @@ sqlalchemy
 dotenv
 jupyterlab
 notebook
+ipykernel
