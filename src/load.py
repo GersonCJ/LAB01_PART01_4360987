@@ -13,11 +13,13 @@ load_dotenv(dotenv_path=env_path)
 
 
 def load_silver(path: str) -> pd.DataFrame:
+    """Load transformed data from data/silver"""
     # Accessing transformed (silver) data
     return pd.read_parquet(path)
 
 
 def clean_column_name(col):
+    """clean symbols from columns that would interfere with the databse"""
     col = col.lower()
     col = col.replace("($)", "usd")
     col = col.replace("(%)", "prct")
@@ -39,6 +41,7 @@ def clean_column_name(col):
 
 
 def logical_split(df: pd.DataFrame) -> [pd.DataFrame]:
+    """Split table according to Gold layer business logic"""
 
     # Sanitize the column names for SQL query
     df.columns = [clean_column_name(c) for c in df.columns]
@@ -56,6 +59,7 @@ def logical_split(df: pd.DataFrame) -> [pd.DataFrame]:
 
 
 def gold_filtering(sliced_df: pd.DataFrame) -> pd.DataFrame:
+    """Remove Nan values from table"""
     # Using as base the backbone of the columns
     backbone = ["country", "year", "iso_code", "population_people"]
     actual_backbone = [col for col in backbone if col in sliced_df.columns]
@@ -66,6 +70,7 @@ def gold_filtering(sliced_df: pd.DataFrame) -> pd.DataFrame:
 
 
 def push_to_db(df: pd.DataFrame, table_name: str, engine: Engine, schema: str) -> None:
+    """Push table do Postgress Database"""
 
     # 1. Empty the table but keep the structure and types
     with engine.connect() as conn:
@@ -88,6 +93,7 @@ def push_to_db(df: pd.DataFrame, table_name: str, engine: Engine, schema: str) -
 
 
 def run_query(sql_query: str, engine: Engine, params=None) -> pd.DataFrame:
+    """Run SQL query to retrieve data from database"""
     with engine.connect() as conn:
         return pd.read_sql(sql_query, conn, params=params)
 

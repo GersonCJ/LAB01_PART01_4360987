@@ -31,13 +31,8 @@ if not any(bronze_path.iterdir()):
 else:
     print("Data already available. Skipping extraction ...")
 
-# -------- Initial Description of the Data (Pre-Transformation)
-
 metadata = trf.load_bronze(path_strings.raw_metadata_path)
 raw_data = trf.load_bronze(path_strings.raw_main_path)
-print(f"Characterization - Basic infos (Columns, Non-nulls, Dtype of columns):\n{raw_data.info()}")
-print(f"Characterization - Data Descriptions:\n{raw_data.describe()}")
-print(f"Characterization - Nulls Count:\n{raw_data.isna().sum()}")
 
 # ------------------- Transformations
 
@@ -62,11 +57,6 @@ if not any(silver_path.iterdir()):
     trf.save_to_silver(aggregate_df, "Aggregate_table_parquet", silver_path)
 else:
     print("Data already available. Saving skipped ...")
-
-# 6. -------- Initial Description of the Data (Pre-Transformation)
-print(f"Characterization - Basic infos (Columns, Non-nulls, Dtype of columns):\n{national_df.info()}")
-print(f"Characterization - Data Descriptions:\n{national_df.describe()}")
-print(f"Characterization - Nulls Count:\n{national_df.isna().sum()}")
 
 # ------------------- Gold Layer Load
 
