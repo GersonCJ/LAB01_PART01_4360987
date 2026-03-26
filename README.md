@@ -148,6 +148,6 @@ A partir das tabelas do PostgreSQL, 7 queries de negócio são executadas no Jup
 Siga esta ordem exata para replicar o ambiente:
 1. **Instale as dependências:** `pip install -r requirements.txt`.
 2. **Configure as credenciais:** Crie o arquivo `.env` baseado no `.env.example`.
-3. **Prepare o Banco de Dados:** Execute o script `schema.sql` no seu Postgres para criar a estrutura.
+3. **Prepare o Banco de Dados:** Execute o script `schema.sql`, disponível na pasta `database_configuration/` no seu Postgres para criar a estrutura.
 4. **Execute o Pipeline:** `python main.py` (Isso irá ler o CSV, gerar o Parquet e carregar o Postgres).
-5. **Abra o Relatório:** Execute as células do `analysis_report.ipynb` para ver os gráficos interativos.
+5. **Abra o Relatório:** Execute as células do `co2_project_queries.ipynb` para ver os gráficos interativos.
