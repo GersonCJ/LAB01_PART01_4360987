@@ -3,11 +3,25 @@ import Constants.pandas_options
 
 
 def load_bronze(path: str) -> pd.DataFrame:
+    """Load .csv file from data/raw"""
     # -------- Accessing the Raw data
     return pd.read_csv(path)
 
 
+def get_profile(df: pd.DataFrame, stage_name: str) -> dict:
+    """Returns a dictionary with key and metrics for comparison"""
+    return {
+        "stage": stage_name,
+        "rows": df.shape[0],
+        "cols": df.shape[1],
+        "null_sum": df.isna().sum().sum(),
+        "memory_mb": df.memory_usage(deep=True).sum() / (1024 ** 2),
+        "dtypes": df.dtypes.value_counts().to_dict()
+    }
+
+
 def data_cleanse(df: pd.DataFrame) -> pd.DataFrame:
+    """Perform a first clean on the raw data"""
     # Drop duplicates
     removed_dups = df.drop_duplicates()
     # Drop Data population, year and country are NaN
@@ -17,6 +31,7 @@ def data_cleanse(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def obtaining_units_from_meta(df: pd.DataFrame) -> pd.DataFrame:
+    """Load units from codebook to insert them into raw data columns"""
     units_df = df[["column", "unit"]].copy()
     units_df = units_df.astype({"column": "string", "unit": "string"})
 
@@ -32,6 +47,7 @@ def obtaining_units_from_meta(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def standardizing_data(raw_df: pd.DataFrame, units_df: pd.DataFrame) -> pd.DataFrame:
+    """Standardize the raw data - Changing types and column names"""
     # -------- Fixing Columns types:
     # Country and Iso_code to String and Year to int32 (for memory efficiency):
     df_type_formated = raw_df.astype(
@@ -63,6 +79,7 @@ def standardizing_data(raw_df: pd.DataFrame, units_df: pd.DataFrame) -> pd.DataF
 
 
 def input_special_isos(df: pd.DataFrame) -> pd.DataFrame:
+    """Give fake ISOs to countries that don't have one"""
     # In the dataset there is some elements that do not have iso_codes.
     # Most of them are Aggregate values that already are in the dataset reunited by several organizations
     # But there are two special cases:
@@ -78,6 +95,7 @@ def input_special_isos(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def silver_split(final_df: pd.DataFrame) -> [pd.DataFrame]:
+    """Split data into only country fact emissions, and aggregate fact emissions"""
     # 1. Aggregates DF - Rows with missing ISO
     aggregates_df = final_df[final_df["iso_code"].isna()].copy()
 
@@ -89,6 +107,7 @@ def silver_split(final_df: pd.DataFrame) -> [pd.DataFrame]:
 
 
 def save_to_silver(df: pd.DataFrame, table_name: str, base_path) -> None:
+    """Save transformed data to silver table"""
     path = f"{base_path}/{table_name}.parquet"
     df.to_parquet(path, index=False, compression="snappy")
     print(f"Saved {table_name} to {path} | Rows: {len(df)}")
